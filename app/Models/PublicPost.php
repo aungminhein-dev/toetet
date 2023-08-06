@@ -11,11 +11,11 @@ class PublicPost extends Model
     protected $fillable = [
         'title',
         'author_name',
-        'media',
         'grade',
-        'category_name',
         'viewer_type',
+        'post_type',
         'description',
         'view_count',
+        'media'
     ];
 }

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('author_name');
             $table->string('title');
-            $table->string('category_name');
             $table->integer('grade')->nullable();
-            $table->string('media')->nullable();
             $table->longText('description');
-            $table->string('viewer_type')->default('all');
+            $table->string('viewer_type')->default('public');
+            $table->string('post_type')->default('normal');
+            $table->string('media')->nullable();
             $table->integer('view_count')->default(0);
             $table->timestamps();
         });

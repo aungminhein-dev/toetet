@@ -68,19 +68,18 @@ class AdminController extends Controller
         $user = User::where('username',$request->username)->first();
         if($user){
             if(Hash::check($request->password,$user->password)){
-                Student::where('grade',$request->grade)
-                ->update([
-                    'grade'=>$request->grade+1,
-                    'status'=>'new',
-                    'new_status_expiry'=>Carbon::now()->addMonth()
-                ]);
+                $students = Student::all();
+                foreach($students as $student){
+                    $student->grade += 1;
+                    $student->save();
+                }
             }else{
                 toastr()->error('Wrong password try again!');
                 return back();
             }
         }
-        toastr('Students has been upgraded to another grade');
-        return redirect('/admin/student/students-list?grade='.$request->grade+1);
+        toastr('Students have been upgraded to another grade');
+        return redirect('/admin/student/students-list');
     }
 
       // add post page
@@ -104,11 +103,12 @@ class AdminController extends Controller
         $data = [
            'title' =>$request->title,
            'author_name'=>$request->authorName,
-           'media'=>$request->media,
            'grade' => $request->grade,
-           'category_name'=>$request->postCategoryName,
            'description'=>$request->description,
-           'viewer_type'=>$request->viewerType
+           'viewer_type'=>$request->viewerType,
+            'post_type'=>$request->postType,
+
+
         ];
 
         if($request->hasFile('media')){
@@ -118,9 +118,7 @@ class AdminController extends Controller
         }
 
         $validationRule = [
-            // mimes,jpg,png,webp,mp4,mkv
             'title'=>'required',
-            'postCategoryName'=>'required',
             'description'=>'required'
         ];
         Validator::make($request->all(),$validationRule)->validate();
@@ -161,12 +159,11 @@ class AdminController extends Controller
     {
         $data = [
             'title' =>$request->title,
-            'user_id'=>$request->userId,
-            'media'=>$request->media,
+            'author_name'=>$request->authorName,
             'grade' => $request->grade,
-            'category_name'=>$request->postCategoryName,
             'description'=>$request->description,
-            'viewer_type'=>$request->viewerType
+            'viewer_type'=>$request->viewerType,
+            'post_type'=>$request->postType
         ];
 
          if($request->hasFile('media')){
@@ -176,39 +173,14 @@ class AdminController extends Controller
          }
 
          $validationRule = [
-             // mimes,jpg,png,webp,mp4,mkv
-             'title'=>'required',
-             'postCategoryName'=>'required',
-             'description'=>'required'
+            'title'=>'required',
+            'description'=>'required'
          ];
          Validator::make($request->all(),$validationRule)->validate();
          PublicPost::where('id',$request->id)->update($data);
          toastr('A post has been updated.');
          return redirect()-> route('admin#posts');
     }
-
-    //  add category
-    public function addCategory(Request $request)
-    {
-        Validator::make($request->all(),[
-            'categoryName'=>'required|unique:grades,grade'
-
-        ])->validate();
-        Category::create([
-            'category_name'=>$request->categoryName
-        ]);
-        toastr('Anew category has been created');
-        return back();
-    }
-
-  //  delete category
-  public function deleteCategory($id)
-  {
-     Category::where('id',$id)->delete();
-     toastr('A category has been removed!');
-     return back();
-  }
-
 
 
 

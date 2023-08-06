@@ -35,19 +35,7 @@
                                                 value="{{ old('title', $post->title) }}" name="title">
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 mb-1">
-                                        <div class="form-group">
-                                            <label>Category<span class="text-danger">*</span></label>
-                                            <select name="postCategoryName" id="" class="form-control">
-                                                <option>Select A Category</option>
-                                                @foreach ($categories as $c)
-                                                    <option value="{{ old('category', $c->category_name) }}"
-                                                        @if ($post->category_name == $c->category_name) selected @endif>
-                                                        {{ $c->category_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-group">
                                             <label>Grade</label>
@@ -67,16 +55,28 @@
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-12 col-md-12 mb-1">
                                         <div class="form-group">
                                             <label>Viewer Type<span class="text-danger">*</span></label>
                                             <select name="viewerType" id="" class="form-control">
-                                                <option value="">All</option>
+                                                <option value="public">Public</option>
                                                <option value="users">Parents</option>
                                                <option value="admin">Admins</option>
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-12 col-md-12 mb-1">
+                                        <div class="form-group">
+                                            <label>Post Type<span class="text-danger">*</span></label>
+                                            <select name="postType" id="" class="form-control">
+                                                <option vaue="lesson">Lessons</option>
+                                                <option value="normal">Normal</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <input type="hidden" name="authorName" value="{{ Auth::user()->username }}">
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-group">

@@ -110,29 +110,29 @@
                                     <thead class="student-thread">
 
                                         <tr>
-                                            <th>
+                                            <th class="text-center">
                                                 <a href="" class="me-2">
                                                     <i class="fa-solid fa-user"></i>
                                                 </a>
                                             </th>
-                                            <th>Name</th>
-                                            <th>Parent Code</th>
-                                            <th>NRC</th>
-                                            <th>Mobile Number</th>
-                                            <th>Address</th>
-                                            <th>Active Status</th>
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Parent Code</th>
+                                            <th class="text-center">NRC</th>
+                                            <th class="text-center">Mobile Number</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Active Status</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($parents as $parent)
                                             <tr data-user-id="{{ $parent->id }}">
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="form-check check-tables">
                                                         <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <h2 class="table-avatar">
                                                         <a href="student-details.html" class="avatar avatar-sm me-2">
                                                             @if ($parent->image)
@@ -154,23 +154,23 @@
                                                                 class="text-info">{{ $parent->username }}</a>
                                                     </h2>
                                                 </td>
-                                                <td><span
+                                                <td class="text-center"><span
                                                         class="badge code {{ $parent->parent_code == $parent->s_parentCode ? 'badge-soft-success' : 'badge-soft-danger' }}">{{ $parent->parent_code }}</span>
                                                     <span class="badge badge-soft-primary clipboard"
                                                         onclick="copyToClipboard({{ json_encode($parent->parent_code) }})">
                                                         <i class="fa-solid fa-clipboard"></i>
                                                     </span>
                                                 </td>
-                                                <td>{{ $parent->nrc }}</td>
-                                                <td>{{ $parent->phone }}</td>
-                                                <td>{{ $parent->address }}</td>
+                                                <td class="text-center">{{ $parent->nrc }}</td>
+                                                <td class="text-center">{{ $parent->phone }}</td>
+                                                <td class="text-center">{{ $parent->address }}</td>
                                                 <input type="hidden" name="" class="role" value="{{$parent->role}}">
                                                 {{-- @if ($parent->status == 1)
                                                     <td id="badge"> <span class="badge badge-soft-success">Active</span></td>
                                                 @else
-                                                    <td> <span class="badge badge-soft-danger">In Active</span></td>
+                                                    <td class="text-center"> <span class="badge badge-soft-danger">In Active</span></td>
                                                 @endif --}}
-                                                <td> <span class="badge my-badge"></span></td>
+                                                <td class="text-center"> <span class="badge my-badge"></span></td>
                                                 <td class="">
                                                     <div class="actions ">
                                                         <a href="{{ route('admin#editParent', $parent->id) }}"

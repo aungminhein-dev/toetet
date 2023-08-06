@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->string('user_name');
             $table->integer('student_id');
             $table->longText('comment');
             $table->integer('like')->default(0);

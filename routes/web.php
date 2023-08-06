@@ -10,6 +10,8 @@ use App\Http\Controllers\admin\student\StudentController;
 use App\Http\Controllers\parent\UserParentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\ExamController;
+use App\Http\Controllers\GuestController;
 
 
 
@@ -26,9 +28,12 @@ use App\Http\Controllers\admin\AdminController;
 */
 
 Route::middleware(['admin_auth','cors'])->group(function(){ //admin middleware
-    Route::get('/', function() {return view('welcome');})->name('welcome');
-    Route::get('loginPage',function(){ return view('Login');})->name('loginPage' );
-    Route::get('registerPage',function(){ return view('Register');})->name('registerPage');
+    Route::get('/',[GuestController::class,'guestPage'])->name('welcome');
+    Route::get('loginPage',[GuestController::class,'loginPage'])->name('loginPage' );
+    Route::get('registerPage',[GuestController::class,'registerPage'])->name('registerPage');
+    Route::get('posts',[GuestController::class,'showPosts'])->name('posts');
+    Route::get('posts/details/{id}',[GuestController::class,'postDetails'])->name('postDetails');
+    Route::get('add/viewCount',[GuestController::class,'increaseViewCount'])->name('vc');
 
 });
 Route::middleware(['auth','cors'])->group(function () { //overall middleware
@@ -39,21 +44,21 @@ Route::middleware(['auth','cors'])->group(function () { //overall middleware
 
             Route::prefix('admin')->group(function(){
                 Route::get('dashboard',[DashboardController::class,'adminDashboard'])->name('admin#dashboard');
-                Route::get('dashboard/statitics',[DashboardController::class,'dashboardStatitics']);
+                Route::get('dashboard/statitics',[DashboardController::class,'dashboardSt0000000003..333333atitics']);
                 Route::post('comment',[CommunityController::class,'comment'])->name('admin#comment');
                 Route::get('deletecomment/{id}',[CommunityController::class,'deleteComment'])->name('admin#deleteComment');
                 Route::post('add/grade',[AdminController::class,'addGrade'])->name('admin#addGrade');   //add grades to students
 
 
-                Route::get('list',[AdminController::class,'adminList'])->name('admin#list');
-                Route::get('add/page',[AdminController::class,'addAdminPage'])->name('admin#addAdminPage');
-                Route::post('add',[AdminController::class,'addAdmin'])->name('admin#addAdmin');
+                Route::prefix('manage')->group(function(){
+                    Route::get('list',[AdminController::class,'adminList'])->name('admin#list');
+                    Route::get('add/page',[AdminController::class,'addAdminPage'])->name('admin#addAdminPage');
+                    Route::post('add',[AdminController::class,'addAdmin'])->name('admin#addAdmin');
+                });
 
                 Route::prefix('post')->group(function(){
                     Route::get('posts',[AdminController::class,'showPosts'])->name('admin#posts'); //post list
                     Route::get('add',[AdminController::class,'addPostPage'])->name('admin#addPostPage'); //add post page
-                    Route::post('add/category',[AdminController::class,'addCategory'])->name('admin#addCategory'); //add ctegory function
-                    Route::get('delete/category/{id}',[AdminController::class,'deleteCategory'])->name('admin#deleteCategory'); //delete category
                     Route::post('addPost',[AdminController::class,'addPost'])->name('admin#addPost');//add post function
                     Route::get('edit/{id}',[AdminController::class,'editPost'])->name('admin#editPost'); //edit post function
                     Route::get('detail/{id}',[AdminController::class,'postDetail'])->name('admin#postDetail'); //post details
@@ -72,6 +77,13 @@ Route::middleware(['auth','cors'])->group(function () { //overall middleware
                     Route::get('grade',[GradeController::class,'grade'])->name('admin#grade'); //grade
                     Route::post('grade/add',[GradeController::class,'addGrade'])->name('admin#addgrade'); //add grade
                     Route::get('grade/remove/{id}',[GradeController::class,'removeGrade'])->name('admin#gradeRemove'); //remove grades
+
+                    // exam results
+                    Route::get('exam-result/{id}',[ExamController::class,'storeResultPage'])->name('admin#storeExamResultPage');
+                    Route::post('exam-result/store',[ExamController::class,'storeExamResult'])->name('admin#storeExamResult');
+                    Route::get('exam-result/delete/{id}',[ExamController::class,'deleteExamResult'])->name('admin#deleteExamResult');
+                    Route::get('exam-result/edit/{id}',[ExamController::class,'editExamResult'])->name('admin#editExamResult');
+                    Route::post('exam-result/update',[ExamController::class,'updateExamResult'])->name('admin#updateExamResult');
                 });
 
                 Route::prefix('parent')->group(function(){
@@ -90,6 +102,9 @@ Route::middleware(['auth','cors'])->group(function () { //overall middleware
         Route::middleware(['parent_auth'])->group(function(){
             Route::prefix('parent')->group(function(){
                 Route::get('home',[UserParentController::class,'home'])->name('parent#home');
+                Route::get('students',[UserParentController::class,'showStudent'])->name('parent#showStudent');
+                Route::get('posts',[UserParentController::class,'showPosts'])->name('parent#showPosts');
+                Route::post('student/details',[UserParentController::class,'showStudentDetails'])->name('parent#studentDetails');
             });
         });
 });

@@ -6,10 +6,12 @@ use Storage;
 use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Post;
+use App\Models\Subject;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -94,10 +96,15 @@ class StudentController extends Controller
     public function studentDetails($id)
     {
         $student = Student::where('id',$id)->first();
-        $comments = Post::select('*','users.username')
-        ->join('users','users.id','posts.user_id')
-        ->where('student_id',$id)->get();
-        return view('admin.student.studentdetails',compact('student','comments'));
+        $comments = Post::where('student_id',$id)->get();
+        $reportMarks = Subject::where('student_id',$id)
+        ->orderByRaw('DATE(exam_date)')
+        ->orderBy('grade')
+        ->get();
+        // ->groupBy('grade');
+
+
+        return view('admin.student.studentdetails',compact('student','comments','reportMarks'));
     }
 
 

@@ -62,7 +62,7 @@
                                             {{ $students->total() }}</span>
                                     </h3>
                                 </div>
-                                @if (request('grade') || request('grade') == '0')
+                            
                                     <div class="col">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -112,7 +112,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endif
                                 <div class="col-auto text-end float-end ms-auto download-grp">
                                     <form class="d-flex">
                                         <select class="form-select me-2" name="grade" id="gradeBox">
@@ -145,34 +144,34 @@
                                     <thead class="student-thread">
 
                                         <tr>
-                                            <th>
+                                            <th class="text-center">
                                                 <a href="" class="me-2">
                                                     <i class="fa-solid fa-user"></i> <span
                                                         class="text-black ms-2">{{ count($students) }}</span>
                                                 </a>
                                             </th>
-                                            <th>Parent Code</th>
-                                            <th>Student Name</th>
-                                            <th>Admission Id</th>
-                                            <th>Birthday</th>
-                                            <th>Grade</th>
-                                            <th>Father Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Address</th>
-                                            <th>Status</th>
+                                            <th class="text-center">Parent Code</th>
+                                            <th class="text-center">Student Name</th>
+                                            <th class="text-center">Admission Id</th>
+                                            <th class="text-center">Birthday</th>
+                                            <th class="text-center">Grade</th>
+                                            <th class="text-center">Father Name</th>
+                                            <th class="text-center">Mobile Number</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Status</th>
                                             <th class="text-end">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($students as $student)
                                             <tr>
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="form-check check-tables">
                                                         <input class="form-check-input" type="checkbox"
                                                             value="something">
                                                     </div>
                                                 </td>
-                                                <td> <span
+                                                <td class="text-center"> <span
                                                         class="badge badge-soft-success ">{{ $student->parent_code }}</span>
                                                     <span class="badge badge-soft-primary clipboard"
                                                         onclick="copyToClipboard({{ json_encode($student->parent_code) }})">
@@ -180,7 +179,7 @@
                                                     </span>
                                                 </td>
 
-                                                <td>
+                                                <td class="text-center">
                                                     <h2 class="table-avatar">
                                                         <a href="student-details.html" class="avatar avatar-sm me-2">
                                                             @if ($student->image)
@@ -202,9 +201,9 @@
                                                                 class="text-info">{{ $student->student_name }}</a>
                                                     </h2>
                                                 </td>
-                                                <td class="">{{ $student->admission_id }}</td>
-                                                <td>{{ $student->birthday }}</td>
-                                                <td>
+                                                <td class="text-center">{{ $student->admission_id }}</td>
+                                                <td class="text-center">{{ $student->birthday }}</td>
+                                                <td class="text-center">
                                                     <span class="badge badge-soft-success">
                                                         @if ($student->grade == 0)
                                                             KG
@@ -213,10 +212,10 @@
                                                         @endif
                                                     </span>
                                                 </td>
-                                                <td>{{ $student->father_name }}</td>
-                                                <td>{{ $student->phone }}</td>
-                                                <td>{{ $student->address }}</td>
-                                                <td><span class="badge @if($student->status == 'new') badge-soft-danger @else badge-soft-success @endif">{{$student->status}}</span></td>
+                                                <td class="text-center">{{ $student->father_name }}</td>
+                                                <td class="text-center">{{ $student->phone }}</td>
+                                                <td class="text-center">{{ $student->address }}</td>
+                                                <td class="text-center"><span class="badge @if($student->status == 'new') badge-soft-danger @else badge-soft-success @endif">{{$student->status}}</span></td>
                                                 <td class="">
                                                     <div class="actions ">
                                                         <a href="{{ route('admin#editStudent', $student->id) }}"

@@ -29,7 +29,7 @@
                     @elseif(str_ends_with($post->media, '.mp4') || str_ends_with($post->media, '.webm') || str_ends_with($post->media, '.ogg'))
                         <video controls>
                             <source src="{{ asset($post->media) }}" type="video/mp4">
-                            Your browser does not support the video tag.
+
                         </video>
                     @elseif(str_ends_with($post->media, '.pdf'))
                         <iframe src="{{ asset($post->media) }}" width="100%" height="500"></iframe>

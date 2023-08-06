@@ -11,7 +11,7 @@ class CommunityController extends Controller
         public function comment(Request $request)
         {
             $comment = [
-                'user_id'=>$request->userId,
+                'user_name'=>$request->userName,
                 'comment' => $request->comment,
                 'student_id'=>$request->studentId
             ];

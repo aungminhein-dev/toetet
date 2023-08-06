@@ -76,7 +76,7 @@
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
                             <img class="rounded-circle" src="{{ asset('admin/assets/img/profiles/avatar-01.jpg') }}"
-                                width="31" alt="Soeng Souy">
+                                width="31">
                             <div class="user-text">
                                 <h6>{{ Auth::user()->username }}</h6>
                                 <p class="text-muted mb-0">{{ Auth::user()->role }}</p>
@@ -148,15 +148,20 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a class="{{ Request::is('admin/parent/list') ? 'active' : '' }}"href="{{ route('admin#parentsList') }}">Parents List</a>
+                                    <a
+                                        class="{{ Request::is('admin/parent/list') ? 'active' : '' }}"href="{{ route('admin#parentsList') }}">Parents
+                                        List</a>
                                 </li>
 
                                 <li>
-                                    <a class="{{ Request::is('admin/parent/add') ? 'active' : '' }}"href="{{ route('admin#addParentPage') }}">Add New Parent</a>
+                                    <a
+                                        class="{{ Request::is('admin/parent/add') ? 'active' : '' }}"href="{{ route('admin#addParentPage') }}">Add
+                                        New Parent</a>
                                 </li>
 
                                 <li>
-                                    <a  class="{{ Request::is('admin/parent/blank/parents') ? 'active' : '' }}" href="{{ route('admin#noStudentParents') }}" class="">No Student</a>
+                                    <a class="{{ Request::is('admin/parent/blank/parents') ? 'active' : '' }}"
+                                        href="{{ route('admin#noStudentParents') }}" class="">No Student</a>
                                 </li>
                             </ul>
                         </li>
@@ -167,26 +172,34 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a class="{{ Request::is('admin/post/posts') ? 'active' : '' }}"href="{{ route('admin#posts') }}">Posts List</a>
+                                    <a
+                                        class="{{ Request::is('admin/post/posts') ? 'active' : '' }}"href="{{ route('admin#posts') }}">Posts
+                                        List</a>
                                 </li>
 
                                 <li>
-                                    <a class="{{ Request::is('admin/posts/add') ? 'active' : '' }}"href="{{ route('admin#addPostPage') }}">Add New Post</a>
+                                    <a
+                                        class="{{ Request::is('admin/posts/add') ? 'active' : '' }}"href="{{ route('admin#addPostPage') }}">Add
+                                        New Post</a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li class="submenu {{ Request::is('admin/' . 'post' . '*') ? 'active' : '' }}">
+                        <li class="submenu {{ Request::is('admin/' . 'manage' . '*') ? 'active' : '' }}">
                             <a href=""><i class="fas fa-circle-user"></i> <span> Admins</span> <span
                                     class="menu-arrow"></span>
                             </a>
                             <ul>
                                 <li>
-                                    <a class="{{ Request::is('admin/post/list') ? 'active' : '' }}"href="{{ route('admin#list') }}">Admin List</a>
+                                    <a
+                                        class="{{ Request::is('admin/manage/list') ? 'active' : '' }}"href="{{ route('admin#list') }}">Admin
+                                        List</a>
                                 </li>
 
                                 <li>
-                                    <a class="{{ Request::is('admin/add/page') ? 'active' : '' }}"href="{{ route('admin#addAdminPage') }}">Add  New Admin</a>
+                                    <a
+                                        class="{{ Request::is('admin/manage/add/page') ? 'active' : '' }}"href="{{ route('admin#addAdminPage') }}">Add
+                                        New Admin</a>
                                 </li>
                             </ul>
                         </li>

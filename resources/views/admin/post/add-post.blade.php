@@ -3,7 +3,7 @@
 @section('content')
     <div class="content container-fluid">
         <div class="row pb-5">
-            <div class="col-xl-8">
+            <div class="col-xl-8 offset-2" >
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-12">
@@ -33,27 +33,28 @@
                                             <input type="text" class="form-control" name="title">
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 mb-1">
-                                        <div class="form-group">
-                                            <label>Category<span class="text-danger">*</span></label>
-                                            <select name="postCategoryName" id="" class="form-control">
-                                                <option>Select A Category</option>
-                                                @foreach ($categories as $c)
-                                                    <option value="{{ $c->category_name }}">{{ $c->category_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-12 col-md-12 mb-1">
                                         <div class="form-group">
                                             <label>Viewer Type<span class="text-danger">*</span></label>
                                             <select name="viewerType" id="" class="form-control">
-                                                <option selected>All</option>
+                                                <option value="public">Public</option>
                                                <option value="users">Parents</option>
                                                <option value="admin">Admins</option>
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-12 col-md-12 mb-1">
+                                        <div class="form-group">
+                                            <label>Post Type<span class="text-danger">*</span></label>
+                                            <select name="postType" id="" class="form-control">
+                                                <option vaue="lesson">Lessons</option>
+                                                <option value="normal">Normal</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-group">
                                             <label>Grade</label>
@@ -101,53 +102,6 @@
                     </div>
                 </form>
 
-            </div>
-            <div class="col-xl-4 mt-5">
-                <div class="row mt-3">
-
-                    <div class="card shadow p-3">
-                        <form action="{{ route('admin#addCategory') }}" method="post">
-                            @csrf
-
-                            <div class="form-group">
-                                <label class="text-warning">Add category for your future posts.
-                                    <input type="text" class="form-control r " name="categoryName" id="">
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">
-                                Add
-                            </button>
-                        </form>
-                    </div>
-                    <div class="">
-                        <div class="card shadow p-3">
-                            <div class="tableresponsive">
-                                <table
-                                    class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
-                                    <tr>
-                                        <th>Catrgories</th>
-                                        <th class="text-end">Action</th>
-                                    </tr>
-                                    @foreach ($categories as $c)
-                                        <tr>
-                                            <td>
-                                                {{ $c->category_name }}
-                                            </td>
-                                            <td class="text-start">
-                                                <div class="actions ">
-                                                    <a href="{{ route('admin#deleteCategory', $c->id) }}"
-                                                        class="btn btn-sm bg-success-light me-2 shadow-sm">
-                                                        <i class="fa-solid fa-trash"></i> </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>

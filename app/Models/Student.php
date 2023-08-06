@@ -9,11 +9,7 @@ use App\Models\User;
 class Student extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'student_name','birthday','admission_id','father_name','mother_name','mother_nrc','father_nrc','siblings','grade','address','parent_code','phone','image','gender','new_status_expiry'
     ];
-
-
-
 }
