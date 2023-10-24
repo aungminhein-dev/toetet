@@ -9,7 +9,7 @@
                         <h3 class="page-title">Parent Details</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admin#parentsList') }}">Parents</a></li>
-                            <li class="breadcrumb-item active">Paret Details</li>
+                            <li class="breadcrumb-item active">Parent Details</li>
                         </ul>
                     </div>
                 </div>
@@ -26,8 +26,8 @@
                             <div class="profile-bg-img">
                                 <img src="{{ asset('admin/assets/img/profile-bg.jpg') }}" alt="Profile">
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4">
+                            <div class="row p-4">
+                                <div class="col-lg-3 col-md-3">
                                     <div class="profile-user-box">
                                         <div class="profile-user-img">
                                             @if ($parent->image)
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 d-flex align-items-center">
+                                <div class="col-lg-6 col-md-6 d-flex align-items-center">
                                     <div class="follow-group">
                                         <div class="students-follows">
                                             <h5 class="text-center">Parent Code</h5>
@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="students-follows">
                                             <h5 class="text-center">NRC</h5>
-                                            <h4 class="text-center">{{ $parent->nrc }}</h4>
+                                            <h4 class="text-center text-muted">{{ $parent->nrc }}</h4>
                                         </div>
                                         <div class="students-follows">
                                             <h5>Parent Id</h5>
@@ -76,13 +76,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 d-flex align-items-center">
-                                    <div class="follow-btn-group">
+                                <div class="col-lg-3 col-md-3 d-flex align-items-center">
                                         <a href="{{ route('admin#editParent', $parent->id) }}"
-                                            class="btn btn-info follow-btns">Edit</a>
+                                            class="btn btn-info btn-sm me-2"><i class="fa-solid fa-pen"></i></a>
                                         <a href="{{ route('admin#deleteParent', $parent->id) }}"
-                                            class="btn btn-danger">Delete</a>
-                                    </div>
+                                            class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                 </div>
                             </div>
                         </div>

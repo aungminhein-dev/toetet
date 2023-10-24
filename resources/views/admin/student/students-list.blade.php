@@ -62,56 +62,55 @@
                                             {{ $students->total() }}</span>
                                     </h3>
                                 </div>
-                            
-                                    <div class="col">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            Add Grade
-                                        </button>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade " id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('admin#addGrade') }}" method="post">
-                                                            @csrf
-                                                            <input type="hidden" name="grade"
-                                                                value="{{ request('grade') }}">
-                                                            <input type="hidden" name="username"
-                                                                value="{{ Auth::user()->username }}">
+                                <div class="col">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Add Grade
+                                    </button>
 
-                                                            <p class="text-muted">They are currently in
-                                                                Grade-{{ request('grade') }}</p>
-                                                            <p class="text-danger">Are you sure you want to add this
-                                                                childern to next grade?</p>
-
-                                                            <label class="text-danger">Please enter your password to perform
-                                                                this action.</label>
-                                                            <div class="form-floating">
-                                                                <input type="password" class="form-control"
-                                                                    id="floatingPassword" name="password"
-                                                                    placeholder="Password" required>
-                                                                <label for="floatingPassword">Password</label>
-                                                            </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Let me think for a moment</button>
-                                                        <button type="submit" class="btn btn-primary">Confirm</button>
-                                                    </div>
-                                                    </form>
+                                    <!-- Modal -->
+                                    <div class="modal fade " id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('admin#addGrade') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="grade" value="{{ request('grade') }}">
+                                                        <input type="hidden" name="username"
+                                                            value="{{ Auth::user()->username }}">
+
+                                                        <p class="text-muted">They are currently in
+                                                            Grade-{{ request('grade') }}</p>
+                                                        <p class="text-danger">Are you sure you want to add this
+                                                            childern to next grade?</p>
+
+                                                        <label class="text-danger">Please enter your password to perform
+                                                            this action.</label>
+                                                        <div class="form-floating">
+                                                            <input type="password" class="form-control"
+                                                                id="floatingPassword" name="password" placeholder="Password"
+                                                                required>
+                                                            <label for="floatingPassword">Password</label>
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Let me think for a moment</button>
+                                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
                                     <form class="d-flex">
                                         <select class="form-select me-2" name="grade" id="gradeBox">
@@ -215,7 +214,9 @@
                                                 <td class="text-center">{{ $student->father_name }}</td>
                                                 <td class="text-center">{{ $student->phone }}</td>
                                                 <td class="text-center">{{ $student->address }}</td>
-                                                <td class="text-center"><span class="badge @if($student->status == 'new') badge-soft-danger @else badge-soft-success @endif">{{$student->status}}</span></td>
+                                                <td class="text-center"><span
+                                                        class="badge @if ($student->status == 'new') badge-soft-danger @else badge-soft-success @endif">{{ $student->status }}</span>
+                                                </td>
                                                 <td class="">
                                                     <div class="actions ">
                                                         <a href="{{ route('admin#editStudent', $student->id) }}"

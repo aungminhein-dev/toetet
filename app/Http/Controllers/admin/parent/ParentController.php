@@ -35,6 +35,7 @@ class ParentController extends Controller
             $status->where('users.status','like','%'.request('status').'%');
         })
         ->paginate(10);
+        // dd($parents->toArray());
         return view('admin.parent.parents-list',compact('parents','parentWithStudentCode'));
     }
 
@@ -118,7 +119,7 @@ class ParentController extends Controller
         }
         User::where('id',$request->id)->update($data);
         toastr()->info('A parent detail has been updated');
-        return redirect()->route('admin#parentsList');
+        return back();
     }
 
     private function getParentData($request,$action)

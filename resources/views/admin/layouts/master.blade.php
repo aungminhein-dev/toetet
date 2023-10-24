@@ -46,9 +46,7 @@
 
             <div class="header-left">
                 <a href="index.html" class="logo">
-                    <img src="{{ asset('storage/logo/toetet.svg') }}" alt="Logo" width="50" height="50">
-                    <a href="" class="text-success d-none d-lg-block ms-2">Toe <span
-                            class="h5">Tet</span></a>
+                    <a href="" class="text-primary d-none d-lg-block ms-2">TOE TET Private High School</a>
                 </a>
                 <a href="index.html" class="logo logo-small">
                     <img src="{{ asset('storage/logo/toetet.svg') }}" alt="Logo" width="30" height="30">

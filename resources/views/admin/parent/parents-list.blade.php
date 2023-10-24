@@ -198,7 +198,7 @@
         </div>
     @endsection
     @section('myScript')
-        <script>
+        {{-- <script>
             $(document).ready(function() {
                 setInterval(function() {
                     $('tr[data-user-id]').each(function() {
@@ -221,5 +221,5 @@
                     });
                 }, 1000);
             });
-        </script>
+        </script> --}}
     @endsection
