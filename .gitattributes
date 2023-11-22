@@ -5,6 +5,9 @@
 *.html diff=html
 *.md diff=markdown
 *.php diff=php
+*.php linguist-language=PHP
+*.js linguist-language=JavaScript
+*.css linguist-language=CSS
 
 /.github export-ignore
 CHANGELOG.md export-ignore
