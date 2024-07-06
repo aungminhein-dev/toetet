@@ -97,6 +97,11 @@ Route::middleware(['auth','cors'])->group(function () { //overall middleware
                     Route::get('{id}/{role}/status',[ParentController::class,'activeStatus'])->name('admin#activeparents'); //active parents this is an ajax function
                     Route::get('blank/parents',[ParentController::class,'parentsWithoutStudent'])->name('admin#noStudentParents'); //parents whose stdents has not been added yet
                 });
+
+
+                Route::prefix('entrance')->controller(EntranceTestController::class)->group(function(){
+                    Route::get('test','test')->name('test');
+                });
             });
         });
         Route::middleware(['parent_auth'])->group(function(){
